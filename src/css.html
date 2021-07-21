@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/common.css">
+    <style type="text/css">
+      /* 水平垂直居中 */
+      .center-box{
+        width: 100px;
+        height: 100px;
+        margin: 10px 0;
+        color: #fff;
+        background-color: green;
+      }
+
+      /* 第1种: flex */
+      .center1{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* 第2种: 绝对定位+平移 */
+      .center2{
+        position: relative;
+      }
+      .center2 > div{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* 第3种: grid */
+      .center3{
+        display: grid;
+        place-content: center;
+      }
+
+      /* 第4种: table-cell */
+      .center4{
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+      }
+      /* 子元素inline-block看具体情况设置 */
+      .center4 > div{
+        display: inline-block;
+      }
+
+      /* 第5种: 绝对定位+负边距（适用于子元素宽高固定） */
+      .center5{
+        position: relative;
+      }
+      .center5 > div{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -28px;
+        margin-top: -10px;
+        width: 56px;
+        height: 20px;
+      }
+    </style>
+    <style type="text/css">
+      .bfc{
+        display: list-item;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>水平垂直居中对齐</h1>
+    <pre>
+      /* 第1种: flex */
+      .center1{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* 第2种: 绝对定位+平移 */
+      .center2{
+        position: relative;
+      }
+      .center2 > div{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* 第3种: grid */
+      .center3{
+        display: grid;
+        place-content: center;
+      }
+
+      /* 第4种: table-cell */
+      .center4{
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+      }
+      /* 子元素inline-block看具体情况设置 */
+      .center4 > div{
+        display: inline-block;
+      }
+
+      /* 第5种: 绝对定位+负边距（适用于子元素宽高固定） */
+      .center5{
+        position: relative;
+      }
+      .center5 > div{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -28px;
+        margin-top: -10px;
+        width: 56px;
+        height: 20px;
+      }</pre>
+    <div class="center-wrapper">
+      <div class="center-box center1">
+        <div>center1</div>
+      </div>
+      <div class="center-box center2">
+        <div>center2</div>
+      </div>
+      <div class="center-box center3">
+        <div>center3</div>
+      </div>
+      <div class="center-box center4">
+        <div>center4</div>
+      </div>
+      <div class="center-box center5">
+        <div>center5</div>
+      </div>
+    </div>
+    <hr />
+
+    <h1>盒模型</h1>
+    <pre>
+      box-sizing: border-box | content-box;设置盒模型
+      border-box IE盒模型（怪异模式），元素宽高width/height=content+padding+border
+      content-box 标准盒模型，元素宽高width/height=content</pre>
+    <hr />
+
+    <h1>BFC(Block Formatting Context)：块级格式化上下文</h1>
+    <pre>
+      Formatting context(格式化上下文)是页面中的一块渲染区域，并且有一套渲染规则，他决定了其子元素如何定位，以及和其他元素的关系和相互作用
+      常见的Formatting context有Block Formatting Context(BFC)和Inline Formatting Context(IFC)
+      BFC是一个独立的渲染区域，规定了内部的Block-level Box如何布局，并且这个区域外部毫不相干。是一个容器，用于管理块级元素
+      触发BFC
+      1、body根元素
+      2、display为inline-block、table-cell、table-caption、flex、inline-flex
+      3、绝对定位元素：position为absolute、fixed
+      4、浮动元素：float不为none
+      5、overflow不为visible</pre>
+    <div class="bfc">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+  </body>
+</html>
