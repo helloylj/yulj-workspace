@@ -10,6 +10,53 @@
     <link rel="stylesheet" type="text/css" href="./css/reset.css">
     <link rel="stylesheet" type="text/css" href="./css/common.css">
     <style type="text/css">
+      .nth-child,
+      .nth-of-type,
+      .only-child,
+      .only-of-type{
+        margin: 10px 0;
+        border: 1px solid #ddd;
+      }
+      .nth-child p:nth-child(1){
+        color: red;
+      }
+
+      .nth-of-type p:nth-of-type(1){
+        color: blue;
+      }
+
+      .only-child p:only-child{
+        color: green;
+      }
+
+      .only-of-type p:only-of-type{
+        color: pink;
+      }
+    </style>
+    <style type="text/css">
+      .bfc,
+      .bfc1{
+        color: #fff;
+        background-color: pink;
+        overflow: hidden;
+      }
+      .bfc > div{
+        margin: 10px 0;
+      }
+      .bfc .float{
+        float: left;
+        background-color: green;
+      }
+      .bfc .normal{
+        background-color: red;
+        overflow: hidden;
+      }
+      .bfc1 > div{
+        margin: 10px 0;
+        background-color: blue;
+      }
+    </style>
+    <style type="text/css">
       /* 水平垂直居中 */
       .center-box{
         width: 100px;
@@ -68,13 +115,167 @@
         height: 20px;
       }
     </style>
-    <style type="text/css">
-      .bfc{
-        display: list-item;
-      }
-    </style>
   </head>
   <body>
+    <h1>盒模型</h1>
+    <pre>
+      box-sizing: border-box | content-box;设置盒模型
+      border-box IE盒模型（怪异模式），元素宽高width/height=content+padding+border
+      content-box 标准盒模型，元素宽高width/height=content
+    </pre>
+    <hr />
+
+    <h1>CSS选择器</h1>
+    <pre>
+      组合器：
+      A > B 匹配任意元素，满足条件：B是A的直接子节点
+      A + B 匹配任意元素，满足条件：B是A的下一个兄弟节点（AB有相同父节点，B紧跟在A后面）
+      A ~ B 匹配任意元素，满足条件：B是A之后的兄弟节点中的任意一个（AB有相同父节点，B在A后面，但不一定紧挨着A）
+
+      属性选择器：
+      [attr~=val] 选择attr属性的值（以空格间隔出多个值）中包含val的元素
+      [attr*=val] 选择attr属性的值中包含字符串val的元素
+      [attr|=val] 选择attr属性的值中以val或val-开头的元素（-用来处理语言编码）
+      [attr^=val] 选择attr属性的值中以val开头的元素
+      [attr$=val] 选择attr属性的值中以val结尾的元素
+
+      伪类：
+      :link 未访问的元素
+      :visited 已访问的元素
+      :hover 鼠标悬停的元素
+      :active 已选择的元素
+      :target 当前活动的html锚
+
+      :focus 获取焦点的元素
+      :checked 被选中的元素
+      :disabled 被禁用的元素
+      :enabled 已启用的元素
+      :in-range 具有指定范围内的值的元素
+      :out-of-range 值在指定范围外的元素
+      :valid 具有有效值的元素
+      :invalid 具有无效值的元素
+      :optional 不带required属性的元素
+      :required 指定了required属性的元素
+      :read-write 不带readonly属性的元素
+      :read-only 指定了readonly属性的元素
+      :lang(language) lang属性以language开头的元素
+
+      :first-child 其父元素的首个子元素
+      :first-of-type 其父元素中第一个出现的元素，不管其在兄弟内的位置如何
+      :nth-child(n)
+      :nth-of-type(n)
+      :last-child
+      :last-of-type
+      :nth-last-child(n)
+      :nth-last-of-type(n)
+      :only-of-type
+      :only-child 其父元素的唯一子元素
+      :not(selector)
+
+      :empty 没有子元素的元素
+      :root 根元素
+
+      伪元素
+      :after
+      :before
+      :first-letter 元素首字母
+      :first-line 元素首行
+      :selection 鼠标选中的元素
+    </pre>
+    <div class="nth-child">
+      <div>nth-child(1)无法选中</div>
+      <p>nth-child(1)无法选中</p>
+    </div>
+    <div class="nth-of-type">
+      <div>nth-of-type(1)无法选中</div>
+      <p>nth-of-type(1)选中</p>
+    </div>
+    <div class="only-child">
+      <p>only-child选中</p>
+    </div>
+    <div class="only-child">
+      <p>only-child无法选中</p>
+      <p>only-child无法选中</p>
+    </div>
+    <div class="only-of-type">
+      <p>only-of-type选中</p>
+    </div>
+    <div class="only-of-type">
+      <div>only-of-type无法选中</div>
+      <p>only-of-type选中</p>
+    </div>
+    <hr />
+
+    <h1>BFC(Block Formatting Context)：块级格式化上下文</h1>
+    <pre>
+      Formatting context(格式化上下文)是页面中的一块渲染区域，并且有一套渲染规则，他决定了其子元素如何定位，以及和其他元素的关系和相互作用
+      常见的Formatting context有Block Formatting Context(BFC)和Inline Formatting Context(IFC)
+
+      具有BFC特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素，并且BFC具有普通容器所没有的一些特性
+
+      触发BFC：
+      1、body根元素
+      2、display为inline-block、table-cell、table-caption、flex、inline-flex
+      3、绝对定位元素：position为absolute、fixed
+      4、浮动元素：float为left、right
+      5、overflow为hidden、auto、scroll
+
+      BFC特性：
+      1、同个BFC下外边距折叠（如果想要避免外边距重叠，可以将其放在不同的BFC容器中）
+      2、BFC可以包含浮动的元素（清除浮动）
+      3、BFC可以阻止元素被浮动元素覆盖
+    </pre>
+
+    <div class="bfc">
+      <div class="float">1111</div>
+      <div class="normal">你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀</div>
+    </div>
+    <div class="bfc1">
+      <div>2</div>
+      <div>3</div>
+    </div>
+    <hr />
+
+    <h1>CSS权重</h1>
+    <img src="https://pic3.zhimg.com/80/v2-b1a9fedf320754acb1d7766c6548d5f6_1440w.jpg">
+    <pre>
+      1、常用选择器权重优先级：!important > id > class > tag
+      2、如果!important被用于一个简写的样式属性，那么这条简写的样式属性所代表的子属性都会被应用上!important
+      3、如果两条样式都使用!important，权重高的优先级高
+      4、同个CSS样式写2次，后面的会覆盖前面的
+      5、样式指向同一元素，权重规则生效，权重大的被应用
+      6、样式指向同一元素，权重规则生效，权重相同时，就近原则生效，后面定义的被应用
+      7、样式不指向同一元素时，权重规则失效，就近原则生效，离目标元素最近的样式被应用
+    </pre>
+    <hr />
+
+    <h1>CSS3新特性</h1>
+    <pre>
+      
+    </pre>
+
+    <h1>flex布局</h1>
+    <pre>
+      主轴/交叉轴
+      起始线/终止线
+
+      容器属性：
+      flex-direction flex方向 row/row-reverse/column/column-reverse
+      flex-wrap 换行 nowrap/wrap/wrap-reverse
+      flex-flow flex-direction和flex-wrap的简写
+      justify-content 主轴对齐方式 flex-start/flex-end/center/space-between/space-around
+      align-items 交叉轴对齐方式 stretch/flex-start/flex-end/center/baseline
+      align-content 多跟轴线对齐方式
+
+      项目属性：
+      order 项目排列顺序，数值越小越靠前，默认0
+      flex-grow 项目放大比例，默认0，即如果存在剩余空间，也不放大
+      flex-shrink 项目缩小比例，默认1，即如果空间不足，该项目缩小
+      flex-basis 项目占据的主轴空间，默认auto，即项目本来大小。设置具体px值，项目将占据固定空间
+      flex flex-grow、flex-shrink和flex-basis的简写，快捷值auto(1 1 auto)、none(0 0 auto)
+      align-self 单个项目对齐方式，默认值auto
+    </pre>
+
     <h1>水平垂直居中对齐</h1>
     <pre>
       /* 第1种: flex */
@@ -124,7 +325,8 @@
         margin-top: -10px;
         width: 56px;
         height: 20px;
-      }</pre>
+      }
+    </pre>
     <div class="center-wrapper">
       <div class="center-box center1">
         <div>center1</div>
@@ -143,29 +345,5 @@
       </div>
     </div>
     <hr />
-
-    <h1>盒模型</h1>
-    <pre>
-      box-sizing: border-box | content-box;设置盒模型
-      border-box IE盒模型（怪异模式），元素宽高width/height=content+padding+border
-      content-box 标准盒模型，元素宽高width/height=content</pre>
-    <hr />
-
-    <h1>BFC(Block Formatting Context)：块级格式化上下文</h1>
-    <pre>
-      Formatting context(格式化上下文)是页面中的一块渲染区域，并且有一套渲染规则，他决定了其子元素如何定位，以及和其他元素的关系和相互作用
-      常见的Formatting context有Block Formatting Context(BFC)和Inline Formatting Context(IFC)
-      BFC是一个独立的渲染区域，规定了内部的Block-level Box如何布局，并且这个区域外部毫不相干。是一个容器，用于管理块级元素
-      触发BFC
-      1、body根元素
-      2、display为inline-block、table-cell、table-caption、flex、inline-flex
-      3、绝对定位元素：position为absolute、fixed
-      4、浮动元素：float不为none
-      5、overflow不为visible</pre>
-    <div class="bfc">
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-    </div>
   </body>
 </html>
