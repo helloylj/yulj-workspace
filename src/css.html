@@ -57,6 +57,25 @@
       }
     </style>
     <style type="text/css">
+      .animation-box{
+        position: relative;
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+        animation: move 3s linear 1s 2 normal both;
+      }
+      @keyframes move{
+        from{
+          left: 0;
+          background-color: green;
+        }
+        to{
+          left: 50%;
+          background-color: red;
+        }
+      }
+    </style>
+    <style type="text/css">
       /* 水平垂直居中 */
       .center-box{
         width: 100px;
@@ -182,27 +201,29 @@
       :first-line 元素首行
       :selection 鼠标选中的元素
     </pre>
-    <div class="nth-child">
-      <div>nth-child(1)无法选中</div>
-      <p>nth-child(1)无法选中</p>
-    </div>
-    <div class="nth-of-type">
-      <div>nth-of-type(1)无法选中</div>
-      <p>nth-of-type(1)选中</p>
-    </div>
-    <div class="only-child">
-      <p>only-child选中</p>
-    </div>
-    <div class="only-child">
-      <p>only-child无法选中</p>
-      <p>only-child无法选中</p>
-    </div>
-    <div class="only-of-type">
-      <p>only-of-type选中</p>
-    </div>
-    <div class="only-of-type">
-      <div>only-of-type无法选中</div>
-      <p>only-of-type选中</p>
+    <div>
+      <div class="nth-child">
+        <div>nth-child(1)无法选中</div>
+        <p>nth-child(1)无法选中</p>
+      </div>
+      <div class="nth-of-type">
+        <div>nth-of-type(1)无法选中</div>
+        <p>nth-of-type(1)选中</p>
+      </div>
+      <div class="only-child">
+        <p>only-child选中</p>
+      </div>
+      <div class="only-child">
+        <p>only-child无法选中</p>
+        <p>only-child无法选中</p>
+      </div>
+      <div class="only-of-type">
+        <p>only-of-type选中</p>
+      </div>
+      <div class="only-of-type">
+        <div>only-of-type无法选中</div>
+        <p>only-of-type选中</p>
+      </div>
     </div>
     <hr />
 
@@ -225,14 +246,15 @@
       2、BFC可以包含浮动的元素（清除浮动）
       3、BFC可以阻止元素被浮动元素覆盖
     </pre>
-
-    <div class="bfc">
-      <div class="float">1111</div>
-      <div class="normal">你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀</div>
-    </div>
-    <div class="bfc1">
-      <div>2</div>
-      <div>3</div>
+    <div>
+      <div class="bfc">
+        <div class="float">1111</div>
+        <div class="normal">你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀你好呀</div>
+      </div>
+      <div class="bfc1">
+        <div>2</div>
+        <div>3</div>
+      </div>
     </div>
     <hr />
 
@@ -277,7 +299,7 @@
       word-break
 
       shadow:
-      box-shadow
+      box-shadow: offset-x offset-y blur-radius color;
       text-shadow
 
       2D transform:
@@ -298,12 +320,47 @@
       transition
       transition-property
       transition-duration
-      transition-timing-function
+      transition-timing-function linear/ease/ease-in/ease-out/ease-in-out/cubic-bezier(n,n,n,n)
       transition-delay
 
-      animations:
-      
+      animation:
+      animation
+      animation-name
+      animation-duration
+      animation-timing-function linear/ease/ease-in/ease-out/ease-in-out/cubic-bezier(n,n,n,n)
+      animation-delay
+      animation-iteration-count 次数/infinite
+      animation-direction normal/reverse/alternate/alternate-reverse
+      animation-fill-mode none/forwards(当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）)/backwards在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）/both
+      animation-play-state paused/running
+      @keyframes
+
+      columns:
+      column-count
+      column-fill auto/balance
+      column-gap
+      column-rule
+      column-span none/all
+      column-width
+      columns
+
+      box-sizing:
+      box-sizing border-box
+
+      flex:
+      具体见flex布局
+
+      filter:
+      filter blur()/brightness()/contrast()/drop-shadow()/grayscale()/hue-rotate()/invert()/opacity()/sepia()/saturate()
+
+      media queries:
+      @media screen and(min-width: 320px) and (max-width: 480px)
+
+      其他:
+      resize none/horizontal/both
+      outline-offset
     </pre>
+    <div class="animation-box">animation box</div>
 
     <h1>flex布局</h1>
     <pre>
