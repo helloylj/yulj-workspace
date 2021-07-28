@@ -84,6 +84,13 @@
         color: #fff;
         background-color: green;
       }
+      .center-inline-box{
+        width: 100px;
+        height: 100px;
+        margin: 10px 0;
+        color: #fff;
+        background-color: blue;
+      }
 
       /* 第1种: flex */
       .center1{
@@ -132,6 +139,34 @@
         margin-top: -10px;
         width: 56px;
         height: 20px;
+      }
+
+      /* 第6种: 绝对定位+top: 0;left: 0;right: 0;bottom: 0;margin:auto（适用于子元素宽高固定） */
+      .center6{
+        position: relative;
+      }
+      .center6 > div{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 56px;
+        height: 20px;
+      }
+
+      /* 第1种：行高为父元素高度 */
+      .center-inline1{
+        text-align: center;
+        line-height: 100px;
+      }
+
+      /* 第2种：table-cell+vertical-align */
+      .center-inline2{
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
       }
     </style>
   </head>
@@ -196,6 +231,16 @@
       </div>
       <div class="center-box center5">
         <div>center5</div>
+      </div>
+      <div class="center-box center6">
+        <div>center6</div>
+      </div>
+
+      <div class="center-inline-box center-inline1">
+        centerinline1
+      </div>
+      <div class="center-inline-box center-inline2">
+        centerinline2
       </div>
     </div>
     <hr />
