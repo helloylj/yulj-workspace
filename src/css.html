@@ -303,18 +303,19 @@
       text-shadow
 
       2D transform:
-      translate()/translateX()/translateY()
-      rotate()
-      scale()/scaleX()/scaleY()
-      skew()/skewX()/skewY()
-      matrix()
+      transform-origin
+      transform translate()/translateX()/translateY()
+      transform rotate()
+      transform scale()/scaleX()/scaleY()
+      transform skew()/skewX()/skewY()
+      transform matrix()
 
       3D transform:
-      translate3d()/translateZ()
-      rotate3d()/rotateZ()
-      scale3d()/scaleZ()
-      matrix3d()
-      perspective
+      transform translate3d()/translateZ()
+      transform rotate3d()/rotateZ()
+      transform scale3d()/scaleZ()
+      transform matrix3d()
+      transform perspective
 
       transition:
       transition
@@ -361,6 +362,7 @@
       outline-offset
     </pre>
     <div class="animation-box">animation box</div>
+    <hr />
 
     <h1>flex布局</h1>
     <pre>
@@ -383,6 +385,7 @@
       flex flex-grow、flex-shrink和flex-basis的简写，快捷值auto(1 1 auto)、none(0 0 auto)
       align-self 单个项目对齐方式，默认值auto
     </pre>
+    <hr />
 
     <h1>水平垂直居中对齐</h1>
     <pre>
@@ -453,5 +456,8 @@
       </div>
     </div>
     <hr />
+
+    <h1>层叠上下文</h1>
+    <img src="https://image.zhangxinxu.com/image/blog/201601/2016-01-09_211116.png" />
   </body>
 </html>
